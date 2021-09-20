@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How To make a Clock Using radialIndicator.js</title>
+    <style>
+        body{
+            background: #000;
+        }
+        #circle-clock{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            -moz-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            -o-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="circle-clock"></div>
+
+
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/radialIndicator.min.js"></script>
+    <script src="js/angular.radialIndicator.js"></script>
+    <script>
+        var radialObj = radialIndicator('#circle-clock', {
+            radius: 250, /*change*/
+            barWidth: 20,/*change*/
+            barColor: '#0CECDD', /*change*/
+            minValue: 0,
+            maxValue: 60,
+            fontWeight: 'normal',
+            roundCorner: true,
+            format: function (value) {
+                var date = new Date();
+                return date.getHours() + ':' + date.getMinutes();
+            }
+        });
+
+        setInterval(function () {
+            radialObj.value(new Date().getSeconds() + 1);
+        }, 1000);
+    </script>
+</body>
+</html>
